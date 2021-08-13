@@ -15,7 +15,7 @@ map.on('load', function(){
             'data':'delay.geojson'
         },
         'paint':{
-            'fill-color':'#FFD700',
+            'fill-color':'#800080',
             'fill-opacity': 0.5
 
         }
@@ -24,9 +24,17 @@ map.on('load', function(){
 
 map.on('click', 'delaydata', function (e) {
     var districtName = e.features[0].properties.NAME_x;
+    var session1_avg_delay = e.features[0].properties.session1_avg_delay;
+    var session2_avg_delay = e.features[0].properties.session2_avg_delay;
+    var session3_avg_delay = e.features[0].properties.session3_avg_delay;
+    var session4_avg_delay = e.features[0].properties.session4_avg_delay;
     new mapboxgl.Popup()
         .setLngLat(e.lngLat)
-        .setHTML('<h2>' + districtName + '</h2>' +  '<h3><hr>')
+        .setHTML('<h2>' + districtName + '</h2>' +  '<h3><hr>' 
+        + '<br>' + '<p><b>Most Recent Average Session Delay:</b> ' + session4_avg_delay + ' Days</p>'
+        + '<br>' + '<p><b>Second Recent Average Session Delay:</b> ' + session3_avg_delay + ' Days</p>'
+        + '<br>' + '<p><b>Third Recent Average Session Delay:</b> ' + session2_avg_delay + ' Days</p>'                                                                                                                      
+        + '<br>' + '<p><b>Fourth Recent Average Session Delay:</b> ' + session1_avg_delay +  ' Days</p>' )
         .addTo(map);
 });
 map.on('mouseenter', 'delaydata', function () {
