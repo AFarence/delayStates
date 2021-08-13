@@ -16,7 +16,9 @@ map.on('load', function(){
         },
         'paint':{
             'fill-color':'#800080',
-            'fill-opacity': 0.5
+            'fill-opacity': ['interpolate',['linear'],['get','session4_avg_delay'],
+        1,0.25,
+        150,0.95]
 
         }
     }, );
